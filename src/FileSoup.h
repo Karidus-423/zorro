@@ -11,12 +11,13 @@ enum FILESOUP_ERRORS{
 };
 
 typedef struct {
-	void* location;
+	void* file_position;
+	void* file_ptr;
+	int file_size;
 }filesoup;
 
-//Standard file handling.
+//Standard C file handling.
 filesoup* OpenFileSoup(char* filename);
-
 filesoup* ReadFileSoup(char* filename);
 
 //Reads the contents of a file and passes a character array of the contents.
@@ -25,6 +26,7 @@ char* CopyFileSoup(char* filename);
 
 #endif
 
+//TODO: Use syscalls for opening and closing a file.
 #ifdef FILESOUP_IMPLEMENTED
 char* CopyFileSoup(char* filename){
 	//Open file
